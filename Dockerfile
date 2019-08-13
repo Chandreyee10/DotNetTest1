@@ -1,13 +1,7 @@
-FROM microsoft/dotnet-framework-build:4.7.1 as build-env
+FROM microsoft/iis
 
-WORKDIR /app
-COPY . /app
-RUN nuget.exe restore WebApplication1.csproj 
-RUN MSBuild.exe WebApplication1.csproj /T:Clean;Build;Package /p:Configuration=Release /p:OutputPath="obj\Release"
+RUN powershell -NoProfile -Command Remove-Item -Recurse C:\inetpub\wwwroot\*
 
+WORKDIR /inetpub/wwwroot
 
-FROM microsoft/dotnet-framework:4.7.1
-WORKDIR /app
-COPY --from=build-env /app/out .
-
-ENTRYPOINT ["dotnet", "WebApplication1.dll"]
+COPY content/ .
