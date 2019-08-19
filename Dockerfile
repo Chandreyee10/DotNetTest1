@@ -2,7 +2,7 @@
 
 FROM  mcr.microsoft.com/dotnet/framework/aspnet:4.8 AS build
 WORKDIR /src
-COPY ["WebApplication1\*.csproj", "NetFrameworkDemo/"]
+RUN cp -a ["WebApplication1\*.csproj", "NetFrameworkDemo/"]
 RUN dotnet restore "WebApplication1/WebApplication1.csproj"
 WORKDIR "/src/NetFrameworkDemo"
 COPY . .
