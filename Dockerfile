@@ -19,6 +19,6 @@ RUN Import-Module WebAdministration; `
     Set-ItemProperty IIS:\AppPools\ap-samplewebapp -Name processModel.identityType -Value Service; `
     New-Website -Name 'samplewebapp' `
                 -Port 80 -PhysicalPath 'C:\inetpub\wwwroot\samplewebapp' `
-                ##-ApplicationPool 'ap-samplewebapp' -force
+                -ApplicationPool 'ap-samplewebapp' -force
 COPY --from=publish /publish .
 EXPOSE 80
