@@ -16,8 +16,8 @@ RUN Import-Module WebAdministration; `
     ##New-WebAppPool -Name 'ap-samplewebapp'; `
     ##Set-ItemProperty IIS:\AppPools\ap-samplewebapp -Name managedRuntimeVersion -Value ''; `
     ##Set-ItemProperty IIS:\AppPools\ap-samplewebapp -Name enable32BitAppOnWin64 -Value 0; `
-    ##Set-ItemProperty IIS:\AppPools\ap-samplewebapp -Name processModel.identityType -Value Service; `
-    New-Website -Name 'samplewebapp' `
+    ##Set-ItemProperty IIS:\AppPools\ap-samplewebapp -Name processModel.identityType -Value Service; 
+    `New-Website -Name 'samplewebapp' `
                 -Port 80 -PhysicalPath 'C:\inetpub\wwwroot\samplewebapp' `
                 ##-ApplicationPool 'ap-samplewebapp' -force
 COPY --from=publish /publish .
