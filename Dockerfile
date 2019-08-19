@@ -1,10 +1,11 @@
 # escape=`
 
 FROM  mcr.microsoft.com/dotnet/framework/aspnet:4.8 AS build
-WORKDIR /src
+##WORKDIR /src
+WORKDIR /Users/Administrator/source/repos
 RUN cp  ["WebApplication1\WebApplication1.csproj", "WebApplication1/"]
 RUN dotnet restore "WebApplication1/WebApplication1.csproj"
-WORKDIR "/src/WebApplication1"
+WORKDIR "/Users/Administrator/source/repos/WebApplication1"
 COPY . .
 RUN dotnet build "WebApplication1.csproj" -c Release -o \app
 
