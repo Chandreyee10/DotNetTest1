@@ -3,7 +3,7 @@
 FROM  mcr.microsoft.com/dotnet/framework/aspnet:4.8 AS build
 WORKDIR /src
 COPY . NetFrameworkDemo/
-RUN nuget.exe restore "WebApplication1/WebApplication1.csproj"
+RUN  nuget.exe restore WebApplication1/WebApplication1.csproj
 WORKDIR /src/NetFrameworkDemo
 COPY . .
 RUN dotnet build "WebApplication1.csproj" -c Release -o \app
