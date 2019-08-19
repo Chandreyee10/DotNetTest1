@@ -12,7 +12,7 @@ FROM base AS final
 WORKDIR /inetpub/wwwroot/samplewebapp
 ## Create Web Site and Web Application
 RUN Import-Module WebAdministration; `
-    #Remove-Website -Name 'Default Web Site'; `
+    ##Remove-Website -Name 'Default Web Site'; `
     New-WebAppPool -Name 'ap-samplewebapp'; `
     Set-ItemProperty IIS:\AppPools\ap-samplewebapp -Name managedRuntimeVersion -Value ''; `
     Set-ItemProperty IIS:\AppPools\ap-samplewebapp -Name enable32BitAppOnWin64 -Value 0; `
