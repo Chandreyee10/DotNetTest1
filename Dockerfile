@@ -2,7 +2,7 @@ FROM microsoft/iis as base
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 WORKDIR /app
-COPY *.csproj ./
+COPY WebApplication1/*.csproj ./
 RUN dotnet restore
 
 COPY . ./
