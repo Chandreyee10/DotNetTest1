@@ -1,6 +1,6 @@
 # escape=`
 
-FROM  mcr.microsoft.com/dotnet/framework/aspnet:4.8 AS build
+FROM  mcr.microsoft.com/dotnet/core/aspnet:2.2 AS build
 WORKDIR /src
 COPY . NetFrameworkDemo/
 RUN dotnet restore "NetFrameworkDemo/WebApplication1.csproj"
