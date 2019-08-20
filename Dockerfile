@@ -2,10 +2,10 @@
 
 FROM  mcr.microsoft.com/dotnet/core/aspnet:2.2 AS build
 WORKDIR /src
-COPY . NetFrameworkDemo/
+COPY . WebApplication1/
 
-RUN C:\dotnet\dotnet.exe  restore "NetFrameworkDemo/WebApplication1.csproj"
-WORKDIR /src/NetFrameworkDemo
+RUN C:\dotnet\dotnet.exe  restore "WebApplication1/WebApplication1.csproj"
+WORKDIR /src/WebApplication1
 COPY . .
 RUN "C:\dotnet\dotnet" build "WebApplication1.csproj" -c Release -o \app
 
