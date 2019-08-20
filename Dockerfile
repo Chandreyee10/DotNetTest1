@@ -1,11 +1,10 @@
 # escape=`
 
 FROM  mcr.microsoft.com/dotnet/core/aspnet:2.2 AS build
-##WORKDIR /src
+WORKDIR /src
 COPY . NetFrameworkDemo/
 
-
-RUN 'c:\Program Files\dotnet\dotnet.exe'  restore "NetFrameworkDemo/WebApplication1.csproj"
+RUN 'c:\dotnet\dotnet.exe'  restore "NetFrameworkDemo/WebApplication1.csproj"
 WORKDIR /src/NetFrameworkDemo
 COPY . .
 RUN "c:\Program Files\dotnet\dotnet" build "WebApplication1.csproj" -c Release -o \app
