@@ -6,11 +6,11 @@ COPY WebApplication1/*.csproj ./
 RUN dotnet restore "WebApplication1.csproj"
 
 COPY . ./
-##RUN dotnet build "WebApplication1.csproj" -c Release -o /app
+RUN dotnet build "WebApplication1.csproj" -c Release -o /app
 
-##FROM build AS publish
+FROM build AS publish
 RUN dotnet publish "WebApplication1.csproj" -c Release -o out
 
 FROM base AS final
 WORKDIR /inetpub/wwwroot
-COPY --from=publish /app/out .
+COPY --from=publish /out .
