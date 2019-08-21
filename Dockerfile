@@ -12,7 +12,7 @@ RUN dotnet publish -c Release -o out
 
 # Build runtime image
 ##FROM microsoft/dotnet-framework:4.7.1
-FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8
+FROM microsoft/iis
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "WebApplication1.dll"]
