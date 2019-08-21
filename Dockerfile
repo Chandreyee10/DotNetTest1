@@ -3,7 +3,7 @@ FROM microsoft/iis as base
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 WORKDIR /app
 COPY WebApplication1/*.csproj ./
-RUN dotnet restore
+RUN nuget.exe restore WebApplication1.csproj
 
 COPY . ./
 RUN dotnet build "WebApplication1.csproj" -c Release -o /app
