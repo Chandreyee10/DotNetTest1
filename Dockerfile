@@ -13,4 +13,4 @@ RUN dotnet publish "WebApplication1.csproj" -c Release -o out
 
 FROM base AS final
 WORKDIR /inetpub/wwwroot
-COPY --from=publish /app/out.
+COPY --from=publish /app/out .
