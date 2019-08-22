@@ -4,6 +4,7 @@ WORKDIR /app
 COPY WebApplication1/*.csproj ./
 ##RUN nuget restore
 RUN MSBuild -t:restore
+RUN nuget restore Webapplication1/
 
 # copy everything else and build app
 COPY WebApplication1/. ./Webapplication1
