@@ -1,12 +1,15 @@
-FROM microsoft/dotnet-framework-build:4.7.1 as build-env
+FROM microsoft/dotnet-framework:4.7.2-sdk AS build
 
 WORKDIR /app
-COPY . /app
-RUN nuget.exe restore WebApplication1.csproj
-RUN MSBuild.exe WebApplication1.csproj /t:build /p:Configuration=Release /p:OutputPath=./out
+COPY WebApplication1/*.csproj ./
+RUN nuget restore
 
-FROM microsoft/dotnet-framework:4.7.1
-WORKDIR /app
-COPY --from=build-env app/out .
+# copy everything else and build app
+COPY WebApplication1/. ./
+WORKDIR /app/WebApplication1
+RUN msbuild /p:Configuration=Release
 
-ENTRYPOINT ["WebApplication1.exe"]
+# copy build artifacts into runtime image
+FROM microsoft/aspnet:4.7.2 AS runtime
+WORKDIR /inetpub/wwwroot
+COPY --from=build /app/WebApplication1/. ./
