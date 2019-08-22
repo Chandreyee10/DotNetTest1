@@ -5,8 +5,8 @@ COPY WebApplication1/*.csproj ./
 RUN nuget restore
 
 # copy everything else and build app
-COPY WebApplication1/. ./
-WORKDIR /app/WebApplication1
+COPY WebApplication1/. ./Webapplication1
+WORKDIR /app/Webapplication1
 RUN msbuild /p:Configuration=Release
 
 # copy build artifacts into runtime image
