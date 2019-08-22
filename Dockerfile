@@ -2,7 +2,7 @@ FROM microsoft/dotnet-framework:4.7.2-sdk AS build
 
 WORKDIR /app
 COPY WebApplication1/*.csproj ./
-COPY WebApplication1/*.sln ./
+COPY *.sln ./
 ##RUN nuget restore
 RUN MSBuild -t:restore
 
