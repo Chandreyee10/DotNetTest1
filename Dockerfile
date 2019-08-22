@@ -1,18 +1,10 @@
-##FROM microsoft/dotnet-framework-build:4.7.1 as build-env
-FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 AS build-env
+FROM microsoft/aspnet 
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
 COPY WebApplication1/*.csproj ./
-RUN dotnet restore
-
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
+RUN nuget.exe restore WebApplication1.csproj 
+RUN MSBuild.exe WebApplication1.csproj /T:Clean;Build;Package /p:Configuration=Release /p:OutputPath="obj\Release"
 
 # Build runtime image
-##FROM microsoft/dotnet-framework:4.7.1
-FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8
-WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "WebApplication1.dll"]
+COPY ./obj/Release/_PublishedWebsites/WebApplication1_Package /inetpub/wwwroot
