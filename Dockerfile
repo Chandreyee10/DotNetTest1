@@ -5,7 +5,7 @@ COPY WebApplication1/*.csproj ./
 
 ##RUN nuget restore
 RUN MSBuild -t:restore
-COPY *.sln ./
+COPY . ./
 RUN nuget restore WebApplication1.sln
 
 # copy everything else and build app
